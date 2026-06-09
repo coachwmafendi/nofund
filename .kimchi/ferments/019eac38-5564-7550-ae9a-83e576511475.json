@@ -1,0 +1,15 @@
+{
+  "id": "019eac38-5564-7550-ae9a-83e576511475",
+  "name": "Build all remaining pages",
+  "description": "Build all remaining nofund dashboard pages and features: Auth (Login, Register, Forgot Password), Organization onboarding flow, Campaign Details page with Tabs (Overview, Donations, Donors, Settings), Create Campaign form with validation, Settings pages (Organization profile, payment, team), Payouts list + request payout, API Keys / Webhooks developer portal, and real-time Toast notifications. The project is a Laravel 11+ app with Livewire, Tailwind CSS v4, PostgreSQL, existing models/factories/seeders, and a full UI component system already built (AppShell, Sidebar, PageHeader, Card, StatCard, DataTable, Modal, Tabs, Badge, Buttons, Form components, etc.).",
+  "status": "complete",
+  "worktree": {
+    "path": "/Users/wmafendi/Herd/nofund"
+  },
+  "scoping": {},
+  "phases": [],
+  "decisions": [],
+  "memories": [],
+  "createdAt": "2026-06-09T11:50:33.571Z",
+  "updatedAt": "2026-06-09T12:35:41.873Z"
+}
