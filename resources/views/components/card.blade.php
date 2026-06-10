@@ -1,3 +1,11 @@
+@props([
+    'title' => null,
+    'description' => null,
+    'actions' => null,
+    'slot',
+    'footer' => null,
+])
+
 <div class="rounded-xl border border-slate-800 bg-slate-900/50">
     @if(isset($title) || isset($actions))
         <div class="flex items-center justify-between px-5 py-4 border-b border-slate-800">

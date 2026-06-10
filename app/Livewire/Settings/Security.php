@@ -39,6 +39,6 @@ class Security extends Component
 
     public function render()
     {
-        return view('livewire.settings.security');
+        return view('livewire.settings.security')->layout('layouts.app');
     }
 }

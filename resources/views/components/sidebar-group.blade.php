@@ -3,6 +3,6 @@
         {{ $label }}
     </p>
     <div class="mt-1 space-y-0.5">
-        {{ $items }}
+        {{ $slot }}
     </div>
 </div>

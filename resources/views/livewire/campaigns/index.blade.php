@@ -1,7 +1,9 @@
 <div>
     <x-page-header title="Campaigns" description="Manage all fundraising campaigns.">
         <x-slot:actions>
-            <x-buttons.primary>Create Campaign</x-buttons.primary>
+            <a href="{{ route('campaigns.create') }}">
+                <x-buttons.primary>Create Campaign</x-buttons.primary>
+            </a>
         </x-slot:actions>
     </x-page-header>
 
@@ -55,7 +57,9 @@
                         <x-table.cell class="text-center">{{ $campaign->donor_count }}</x-table.cell>
                         <x-table.cell class="text-slate-500">{{ $campaign->created_at->format('M d, Y') }}</x-table.cell>
                         <x-table.cell>
-                            <x-buttons.ghost>View</x-buttons.ghost>
+                            <a href="{{ route('campaigns.show', $campaign) }}">
+                                <x-buttons.ghost>View</x-buttons.ghost>
+                            </a>
                         </x-table.cell>
                     </x-table.row>
                 @empty

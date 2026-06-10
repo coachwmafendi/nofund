@@ -91,6 +91,6 @@ class General extends Component
 
     public function render()
     {
-        return view('livewire.settings.general');
+        return view('livewire.settings.general')->layout('layouts.app');
     }
 }

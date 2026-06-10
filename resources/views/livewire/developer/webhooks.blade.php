@@ -90,7 +90,7 @@
             <x-form.field>
                 <x-form.label for="webhookUrl">Webhook URL</x-form.label>
                 <x-form.input wire:model="url" id="webhookUrl" placeholder="https://your-app.com/webhooks/nofund" type="url" />
-                <x-form.error for="url" />
+                <x-form.error name="url" />
             </x-form.field>
 
             <x-form.field>
@@ -108,7 +108,7 @@
                         </label>
                     @endforeach
                 </div>
-                <x-form.error for="selectedEvents" />
+                <x-form.error name="selectedEvents" />
             </x-form.field>
         </div>
 

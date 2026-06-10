@@ -6,14 +6,10 @@
             </tr>
         </thead>
         <tbody>
-            @if($rows->count() > 0)
+            @if(isset($rows))
                 {{ $rows }}
             @else
-                <tr>
-                    <td colspan="100%" class="px-4 py-12 text-center">
-                        {{ $empty }}
-                    </td>
-                </tr>
+                {{ $slot }}
             @endif
         </tbody>
     </table>

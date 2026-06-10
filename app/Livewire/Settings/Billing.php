@@ -8,6 +8,6 @@ class Billing extends Component
 {
     public function render()
     {
-        return view('livewire.settings.billing');
+        return view('livewire.settings.billing')->layout('layouts.app');
     }
 }

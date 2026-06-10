@@ -11,7 +11,11 @@
 </head>
 <body class="bg-slate-950 text-slate-50 antialiased">
     <x-app-shell>
-        @yield('content')
+        @isset($slot)
+            {{ $slot }}
+        @else
+            @yield('content')
+        @endisset
     </x-app-shell>
     @livewireScripts
 </body>

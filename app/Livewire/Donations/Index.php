@@ -1,3 +1,5 @@
+<?php
+
 namespace App\Livewire\Donations;
 
 use App\Enums\DonationStatus;
@@ -29,6 +31,6 @@ class Index extends Component
             'donations' => $donations,
             'statuses' => DonationStatus::cases(),
             'campaigns' => $org->campaigns()->pluck('title', 'id'),
-        ]);
+        ])->layout('layouts.app');
     }
 }

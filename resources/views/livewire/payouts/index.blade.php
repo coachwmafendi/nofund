@@ -60,7 +60,7 @@
                         {{ $payout->bankAccount?->bank_name ?? 'N/A' }}
                     </x-table.cell>
                     <x-table.cell>
-                        <x-buttons.ghost wire:click="">View</x-buttons.ghost>
+                        <x-buttons.ghost wire:click="$dispatch('toast', {message: 'Payout detail coming soon.', type: 'info'})">View</x-buttons.ghost>
                     </x-table.cell>
                 </x-table.row>
             @empty

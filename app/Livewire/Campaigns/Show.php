@@ -89,6 +89,7 @@ class Show extends Component
             'start_date' => $this->startDate ?: null,
             'end_date' => $this->endDate ?: null,
             'visibility' => $this->visibility,
+            'embed_code' => $this->campaign->generateEmbedCode(),
         ]);
 
         $this->syncFields();
@@ -122,7 +123,7 @@ class Show extends Component
 
         return [
             'totalRaised' => $donations->sum('amount'),
-            'donorCount' => $donations->where('is_anonymous', false)->distinct('donor_email')->count(),
+            'donorCount' => $donations->where('is_anonymous', false)->unique('donor_email')->count(),
             'donationCount' => $donations->count(),
             'daysLeft' => $this->campaign->end_date
                 ? max(0, (int) Carbon::now()->diffInDays($this->campaign->end_date, false))

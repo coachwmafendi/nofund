@@ -64,4 +64,21 @@ class Campaign extends OrganizationBaseModel
     {
         return 'public_id';
     }
+
+    public function generateEmbedCode(): string
+    {
+        $url = route('campaigns.public-donate', $this);
+
+        return <<<HTML
+<!-- nofund Donation Form for: {$this->title} -->
+<iframe
+    src="{$url}"
+    width="100%"
+    height="650"
+    frameborder="0"
+    style="border-radius: 12px; overflow: hidden;"
+    title="Donate to {$this->title}"
+></iframe>
+HTML;
+    }
 }

@@ -62,6 +62,8 @@ class Create extends Component
             'status' => CampaignStatus::DRAFT,
         ]);
 
+        $campaign->update(['embed_code' => $campaign->generateEmbedCode()]);
+
         $this->dispatch('toast', message: 'Campaign created successfully.', type: 'success');
 
         $this->redirect(route('campaigns.show', $campaign->public_id));

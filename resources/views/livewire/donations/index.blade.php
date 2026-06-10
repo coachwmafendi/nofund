@@ -44,7 +44,7 @@
                             {{ ucfirst($donation->status->value) }}
                         </x-badge>
                     </x-table.cell>
-                    <x-table.cell>{{ $donation->payment_method?->label() ?? 'N/A' }}</x-table.cell>
+                    <x-table.cell>{{ $donation->payment_method?->value ? ucfirst(str_replace('_', ' ', $donation->payment_method->value)) : 'N/A' }}</x-table.cell>
                     <x-table.cell class="text-slate-500">{{ $donation->created_at->format('M d, Y') }}</x-table.cell>
                 </x-table.row>
             @empty

@@ -1,3 +1,10 @@
+@props([
+    'title' => null,
+    'value' => null,
+    'description' => null,
+    'icon' => null,
+])
+
 <div class="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
     <div class="flex items-center justify-between">
         <h3 class="text-sm font-medium text-slate-400">{{ $title }}</h3>

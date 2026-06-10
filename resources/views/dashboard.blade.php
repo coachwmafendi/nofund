@@ -18,7 +18,7 @@
         <x-slot:title>Recent Donations</x-slot:title>
         <x-slot:description>Latest contributions to your campaigns.</x-slot:description>
 
-        <x-table.data-table :rows="$recentDonations">
+        <x-table.data-table>
             <x-slot:header>
                 <x-table.header>Donor</x-table.header>
                 <x-table.header>Campaign</x-table.header>
@@ -26,25 +26,27 @@
                 <x-table.header>Status</x-table.header>
                 <x-table.header>Date</x-table.header>
             </x-slot:header>
-            @forelse($recentDonations as $donation)
-                <x-table.row>
-                    <x-table.cell>{{ $donation->donor_name }}</x-table.cell>
-                    <x-table.cell>{{ $donation->campaign?->title ?? 'General' }}</x-table.cell>
-                    <x-table.cell class="text-right font-medium">RM {{ number_format($donation->amount, 2) }}</x-table.cell>
-                    <x-table.cell>
-                        <x-badge variant="{{ $donation->status->value === 'succeeded' ? 'success' : ($donation->status->value === 'pending' ? 'warning' : 'danger') }}">
-                            {{ ucfirst($donation->status->value) }}
-                        </x-badge>
-                    </x-table.cell>
-                    <x-table.cell class="text-slate-500">{{ $donation->created_at->diffForHumans() }}</x-table.cell>
-                </x-table.row>
-            @empty
-                <x-table.row>
-                    <x-table.empty colspan="5">
-                        <x-empty-state icon="banknotes" title="No donations yet" description="Donations will appear here once supporters start contributing." />
-                    </x-table.empty>
-                </x-table.row>
-            @endforelse
+            <x-slot:rows>
+                @forelse($recentDonations as $donation)
+                    <x-table.row>
+                        <x-table.cell>{{ $donation->donor_name }}</x-table.cell>
+                        <x-table.cell>{{ $donation->campaign?->title ?? 'General' }}</x-table.cell>
+                        <x-table.cell class="text-right font-medium">RM {{ number_format($donation->amount, 2) }}</x-table.cell>
+                        <x-table.cell>
+                            <x-badge variant="{{ $donation->status->value === 'succeeded' ? 'success' : ($donation->status->value === 'pending' ? 'warning' : 'danger') }}">
+                                {{ ucfirst($donation->status->value) }}
+                            </x-badge>
+                        </x-table.cell>
+                        <x-table.cell class="text-slate-500">{{ $donation->created_at->diffForHumans() }}</x-table.cell>
+                    </x-table.row>
+                @empty
+                    <x-table.row>
+                        <x-table.empty colspan="5">
+                            <x-empty-state icon="banknotes" title="No donations yet" description="Donations will appear here once supporters start contributing." />
+                        </x-table.empty>
+                    </x-table.row>
+                @endforelse
+            </x-slot:rows>
         </x-table.data-table>
     </x-card>
 

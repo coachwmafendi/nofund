@@ -122,6 +122,6 @@ class Members extends Component
 
     public function render()
     {
-        return view('livewire.settings.members');
+        return view('livewire.settings.members')->layout('layouts.app');
     }
 }

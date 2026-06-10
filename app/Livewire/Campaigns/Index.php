@@ -27,6 +27,6 @@ class Index extends Component
         return view('livewire.campaigns.index', [
             'campaigns' => $campaigns,
             'statuses' => CampaignStatus::cases(),
-        ]);
+        ])->layout('layouts.app');
     }
 }

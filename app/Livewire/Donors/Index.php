@@ -1,3 +1,5 @@
+<?php
+
 namespace App\Livewire\Donors;
 
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +20,6 @@ class Index extends Component
             ->orderByDesc('total_donated')
             ->paginate(20);
 
-        return view('livewire.donors.index', compact('donors'));
+        return view('livewire.donors.index', compact('donors'))->layout('layouts.app');
     }
 }

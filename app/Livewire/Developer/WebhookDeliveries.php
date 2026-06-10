@@ -23,6 +23,6 @@ class WebhookDeliveries extends Component
 
         return view('livewire.developer.webhook-deliveries', [
             'deliveries' => $deliveries,
-        ]);
+        ])->layout('layouts.app');
     }
 }

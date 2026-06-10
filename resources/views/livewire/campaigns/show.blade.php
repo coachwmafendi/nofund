@@ -47,7 +47,7 @@
     </div>
 
     {{-- Tabs --}}
-    <x-tabs :tabs="$tabs" :activeKey="$activeTab">
+    <x-tabs :tabs="$tabs" :activeKey="$activeTab" onChange="setTab">
         <div class="mt-4">
 
             {{-- Overview Tab --}}
@@ -146,7 +146,7 @@
                                             {{ ucfirst($donation->status->value) }}
                                         </x-badge>
                                     </x-table.cell>
-                                    <x-table.cell>{{ $donation->payment_method?->label() ?? 'N/A' }}</x-table.cell>
+                                    <x-table.cell>{{ $donation->payment_method?->value ? ucfirst(str_replace('_', ' ', $donation->payment_method->value)) : 'N/A' }}</x-table.cell>
                                     <x-table.cell class="text-slate-500">{{ $donation->created_at->format('M d, Y') }}</x-table.cell>
                                 </x-table.row>
                             @empty
@@ -313,23 +313,44 @@
             @if($activeTab === 'embed')
                 <x-card>
                     <x-slot:title>Embed Code</x-slot:title>
-                    <x-slot:description>Embed this campaign's donation form on your website.</x-slot:description>
+                    <x-slot:description>Copy and paste this HTML into your website to embed the donation form.</x-slot:description>
 
-                    <x-form.textarea
-                        id="embed-textarea"
-                        wire:model="embedCode"
-                        rows="6"
-                        readonly
-                        class="font-mono text-xs text-slate-400"
-                    />
+                    <div class="mt-4 space-y-3">
+                        <textarea
+                            id="embed-code"
+                            readonly
+                            class="w-full h-40 rounded-lg border border-slate-700 bg-slate-900/50 px-3 py-2 text-xs font-mono text-slate-400 focus:outline-none resize-none"
+                        >{{ $campaign->embed_code ?? 'No embed code available.' }}</textarea>
 
-                    <div class="mt-4 flex items-center gap-3">
-                        <x-buttons.primary type="button" onclick="navigator.clipboard.writeText(document.getElementById('embed-textarea').value)">
-                            Copy Embed Code
-                        </x-buttons.primary>
-                        <span class="text-xs text-slate-500">Paste this HTML into your website.</span>
+                        <div class="flex items-center gap-3">
+                            <x-buttons.primary type="button" onclick="copyEmbedCode()">Copy to Clipboard</x-buttons.primary>
+                            <span id="copy-feedback" class="text-xs text-emerald-400 hidden">Copied!</span>
+                        </div>
                     </div>
+
+                    <x-slot:footer>
+                        <p class="text-xs text-slate-500">Preview of embedded form:</p>
+                    </x-slot:footer>
                 </x-card>
+
+                @if($campaign->embed_code)
+                    <x-card class="mt-4">
+                        <div class="rounded-lg overflow-hidden border border-slate-800">
+                            {!! $campaign->embed_code !!}
+                        </div>
+                    </x-card>
+                @endif
+
+                <script>
+                    function copyEmbedCode() {
+                        const el = document.getElementById('embed-code');
+                        el.select();
+                        document.execCommand('copy');
+                        const feedback = document.getElementById('copy-feedback');
+                        feedback.classList.remove('hidden');
+                        setTimeout(() => feedback.classList.add('hidden'), 2000);
+                    }
+                </script>
             @endif
 
         </div>

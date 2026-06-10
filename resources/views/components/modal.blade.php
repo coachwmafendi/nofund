@@ -1,3 +1,10 @@
+@props([
+    'show' => false,
+    'title' => null,
+    'slot',
+    'footer' => null,
+])
+
 <div
     x-data="{ open: {{ $show ? 'true' : 'false' }} }"
     @keydown.escape.window="open = false"

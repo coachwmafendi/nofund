@@ -86,7 +86,7 @@
             <x-form.field>
                 <x-form.label for="keyName">Key Name</x-form.label>
                 <x-form.input wire:model="keyName" id="keyName" placeholder="e.g., Production API Key" />
-                <x-form.error for="keyName" />
+                <x-form.error name="keyName" />
             </x-form.field>
         </div>
 

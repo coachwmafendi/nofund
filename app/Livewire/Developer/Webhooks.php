@@ -81,6 +81,6 @@ class Webhooks extends Component
 
         return view('livewire.developer.webhooks', [
             'webhooks' => $webhooks,
-        ]);
+        ])->layout('layouts.app');
     }
 }

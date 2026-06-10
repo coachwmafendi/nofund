@@ -19,6 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Public campaign donation page (for embed)
+Route::get('/donate/{campaign}', [\App\Http\Controllers\PublicDonationController::class, 'show'])->name('campaigns.public-donate');
+
 // Guest auth routes - redirect if already authenticated
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', Login::class)->name('login');
@@ -39,15 +42,35 @@ Route::middleware(['auth', EnsureHasOrganization::class])->group(function () {
     // Onboarding (only for users without organization)
     Route::get('/onboarding', Wizard::class)->name('onboarding');
 
+    // Missing links — redirect to existing pages
+    Route::redirect('/members', '/settings/members');
+    Route::redirect('/billing', '/settings/billing');
+    Route::redirect('/organization', '/settings/general');
+
+    // Placeholder pages
+    Route::get('/teams', function () {
+        return view('livewire.placeholder', ['title' => 'Teams', 'message' => 'Team management is coming soon.']);
+    })->name('teams.index');
+
+    Route::get('/developer/embed-forms', function () {
+        return view('livewire.placeholder', ['title' => 'Embed Forms', 'message' => 'Embeddable donation forms are coming soon.']);
+    })->name('developer.embed-forms');
+
     // Existing auth routes
-    Route::get('/donations', [\App\Livewire\Donations\Index::class, '__invoke'])->name('donations.index');
-    Route::get('/donors', [\App\Livewire\Donors\Index::class, '__invoke'])->name('donors.index');
-    Route::get('/campaigns', [\App\Livewire\Campaigns\Index::class, '__invoke'])->name('campaigns.index');
+    Route::get('/donations', \App\Livewire\Donations\Index::class)->name('donations.index');
+    Route::get('/donors', \App\Livewire\Donors\Index::class)->name('donors.index');
+    Route::get('/campaigns', \App\Livewire\Campaigns\Index::class)->name('campaigns.index');
     Route::get('/campaigns/create', \App\Livewire\Campaigns\Create::class)->name('campaigns.create');
     Route::get('/campaigns/{campaign}', \App\Livewire\Campaigns\Show::class)->name('campaigns.show');
 
     // Finance
     Route::get('/payouts', \App\Livewire\Payouts\Index::class)->name('payouts.index');
+    Route::get('/transactions', \App\Livewire\Transactions\Index::class)->name('transactions.index');
+    Route::get('/refunds', \App\Livewire\Refunds\Index::class)->name('refunds.index');
+    Route::get('/reports', \App\Livewire\Reports\Index::class)->name('reports.index');
+
+    // Recurring Plans
+    Route::get('/recurring-plans', \App\Livewire\RecurringPlans\Index::class)->name('recurring-plans.index');
 
     // Developer
     Route::get('/developer/api-keys', \App\Livewire\Developer\ApiKeys::class)->name('developer.api-keys');

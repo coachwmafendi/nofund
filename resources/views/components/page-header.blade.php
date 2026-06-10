@@ -1,3 +1,9 @@
+@props([
+    'title' => null,
+    'description' => null,
+    'actions' => null,
+])
+
 <div class="mb-8">
     <h1 class="text-2xl font-semibold text-slate-50">{{ $title }}</h1>
     @if($description)

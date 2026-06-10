@@ -48,6 +48,6 @@ class Index extends Component
             'availableBalance' => $availableBalance,
             'pendingPayouts' => $pendingPayouts,
             'totalPaidOut' => $totalPaidOut,
-        ]);
+        ])->layout('layouts.app');
     }
 }

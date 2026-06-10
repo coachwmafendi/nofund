@@ -53,6 +53,6 @@ class ApiKeys extends Component
 
         return view('livewire.developer.api-keys', [
             'apiKeys' => $apiKeys,
-        ]);
+        ])->layout('layouts.app');
     }
 }
